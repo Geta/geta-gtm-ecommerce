@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Geta.EPi.Tracking.Commerce")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Geta Foundation Commerce Tracking")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Geta")]
 [assembly: AssemblyProduct("Geta.EPi.Tracking.Commerce")]
