@@ -1,27 +1,54 @@
-﻿$(function () {
-    var productImpressions = [];
-    var productCards = $("*[data-product='impression']");
-    for (var i = 0, len = productCards.length; i < len; i++) {
-        var p = productCards[i];
-        var id = $(p).find("[data-product-code]").attr('data-product-code');
-        var name = $(p).find("[data-product-name]").attr('data-product-name');
-        var price = $(p).find("[data-product-price]").attr('data-product-price');
-        productImpressions.push(
-            {
-                'id': id,
-                'name': name,
-                'price': price,
-                'position': (i+1)
-            });
-    };
-    console.log(productImpressions);
-    //dataLayer.push({
-    //    'event': 'impressions',
-    //    'ecommerce': {
-    //        'currencyCode': productJson[0].PlacedPrice.Currency.CurrencyCode,
-    //        'impressions': productImpressions
-    //    }
-    //});
-});
+﻿window.GtmProduct = {
+    utils: {}
+};
 
+window.GtmProduct.utils.parseDataAttribute = function (element, dataAttributeName) {
+    var string = element.getAttribute(dataAttributeName);
+    return JSON.parse(string);
+}
+
+window.GtmProduct.utils.getData = function (dataAttributeName) {
+    var selector = '[' + dataAttributeName + ']';
+    var elements = [].slice.call(document.querySelectorAll(selector));
+    return elements.map(function (element) {
+        return GtmProduct.utils.parseDataAttribute(element, dataAttributeName);
+    });
+}
+
+
+window.GtmProduct.addImpressions = function (options) {
+    var dataAttributeName = options.dataAttributeName || 'data-gtmproduct';
+    var impressions = window.GtmProduct.utils.getData(dataAttributeName);
+    impressions = impressions.map(function(impression, i) {
+        impression.position = (i + 1);
+        return impression;
+    });
+    dataLayer.push({
+        'event': 'impressions',
+        'ecommerce': {
+            'currencyCode': options.currencyCode,
+            'impressions': impressions
+        }
+    });
+}
+
+
+
+window.GtmProduct.CartEvent = function (options) {
+    options = {
+        currencyCode: options.currencyCode || '',
+        products: options.products || [],
+        eventName: options.eventName || ''
+    };
+
+    dataLayer.push({
+        'event': options.eventName,
+        'ecommerce': {
+            'currencyCode': options.currencyCode,
+            'add': {
+                'products': options.products
+            }
+        }
+    });
+};
 
