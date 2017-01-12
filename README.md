@@ -14,10 +14,11 @@ The enhanced e-commerce tracking is complex and can consist of many different el
 ![](http://tc.geta.no/app/rest/builds/buildType:(id:TeamFrederik_EPiTracking_EPiTrackingCommerceCreateAndPublishNuGetPackage)/statusIcon)
 
 ## How does it work
-The implementation will look for product json in a data attributes. 
+The implementation picks up product data by reading certain data attributes in the html. This way the module can be reused for different view model and view technologies (Rezor view, Angular, React etc..)
 
 ### Product impressions 
-The implementation will look for attributes with name *'data-gtmproduct'* (name can be configured) and expects the content of the attribute to be serlialized json product data. Here is a sample:
+The implementation will look for attributes with name *'data-gtmproduct'* (name can be configured) and expects the content of the attribute to be serlialized json product data.
+Refer to [Google developer documentation] (https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#ecommerce-data) for details about the different fields.
 
 Here is an example:
 ```json
