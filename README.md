@@ -22,7 +22,9 @@ The implementation will look for attributes with name *'data-gtmproduct'* (name 
 Here is an example:
 ```c
 <div class="product" 
- data-gtmproduct='{"id":"P-38426422","name":"Short Sleeve Crew Tee","price":30.5,"category":null,"brand":"Fruit of the Loom","variant":null,"position":0,"quantity":0}'> 
+ data-gtmproduct='{"id":"P-38426422","name":"Short Sleeve Crew Tee",
+    "price":30.5,"category":null,"brand":"Fruit of the Loom",
+    "variant":null,"position":0,"quantity":0}'> 
   <!--  html for a product item -->
  </div
 ```
