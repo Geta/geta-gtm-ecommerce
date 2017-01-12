@@ -19,8 +19,12 @@ window.GtmProduct.utils.getData = function (dataAttributeName) {
 window.GtmProduct.addImpressions = function (options) {
     var dataAttributeName = options.dataAttributeName || 'data-gtmproduct';
     var impressions = window.GtmProduct.utils.getData(dataAttributeName);
+
+    var listNameElement = document.querySelector('[data-gtmproduct-list]');
+    var listName = listNameElement != null ? listNameElement.getAttribute('data-gtmproduct-list') : '';
     impressions = impressions.map(function(impression, i) {
         impression.position = (i + 1);
+        impression.list = listName;
         return impression;
     });
     dataLayer.push({

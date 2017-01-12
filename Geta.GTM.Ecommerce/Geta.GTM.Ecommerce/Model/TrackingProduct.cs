@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Geta.GTM.Ecommerce.Model
 {
-    public class Product
+    /// <summary>
+    /// Represents information about a product. NOTE: Id or Name is required
+    /// </summary>
+    public class TrackingProduct
     {
         /// <summary>
         /// The product ID or SKU (e.g. P67890). *Either this field or name must be set.
@@ -18,9 +21,19 @@ namespace Geta.GTM.Ecommerce.Model
         public string Name { get; set; }
 
         /// <summary>
+        /// The price of a product (e.g. 29.20).
+        /// </summary>
+        public decimal Price { get; set; }
+
+        /// <summary>
         /// The category to which the product belongs (e.g. Apparel). Use / as a delimiter to specify up to 5-levels of hierarchy (e.g. Apparel/Men/T-Shirts).
         /// </summary>
         public string Category { get; set; }
+
+        /// <summary>
+        /// The brand associated with the product (e.g. Google).
+        /// </summary>
+        public string Brand { get; set; }
 
         /// <summary>
         /// The variant of the product (e.g. Black).
