@@ -1,15 +1,17 @@
 ﻿$(function () {
 
-    $('[data-gtmcartItem]').click(function (event) {
+    $('.jsAddToCart').click(function () {
 
-        var data = GtmProduct.utils.parseDataAttribute(event.currentTarget, 'data-gtmproduct-addToCart');
-        data.quantity = 1;
+        var dataAttributeName = 'data-gtmproductadd';
+        
+        var product = window.GtmProduct.utils.parseDataAttribute(this, dataAttributeName);
 
-        GtmProduct.CartEvent({
-            currencyCode: 'nok',
-            products: data,
-            eventName: 'addToCart'
-        });
-
+        if (product != null) {
+                GtmProduct.sendCartEvent({
+                    eventName: 'addToCart',
+                    products: [product],
+                    currencyCode: 'NOK'
+                });    
+        }
     });
 });
