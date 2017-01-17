@@ -2,33 +2,41 @@
     utils: {}
 };
 
-window.GtmProduct.utils.parseDataAttribute = function (element, dataAttributeName) {
-    var string = element.getAttribute(dataAttributeName);
+var gtmProduct_DataAttributeName = 'data-gtmproduct';
+var gtmProduct_ListDataAttributeName = gtmProduct_DataAttributeName + '-list';
+var gtmProduct_CurrencyDataAttributeName = 'data-gtmcurrency';
+
+
+window.GtmProduct.utils.parseDataAttribute = function (element) {
+    var string = element.getAttribute(gtmProduct_DataAttributeName);
     return JSON.parse(string);
 }
 
-window.GtmProduct.utils.findData = function (dataAttributeName) {
-    var selector = '*[' + dataAttributeName + ']';
-    var elements = $(selector);
-
+window.GtmProduct.utils.loadDataFromAttributes = function (elements) {
     var impressions = [];
     for (var i = 0, len = elements.length; i < len; i++) {
         var p = elements[i];
-        impressions.push(GtmProduct.utils.parseDataAttribute(p, dataAttributeName));
+        impressions.push(GtmProduct.utils.parseDataAttribute(p));
     }
 
     return impressions;
 }
 
+window.GtmProduct.utils.findData = function () {
+    var selector = '*[' + gtmProduct_DataAttributeName + ']';
+    return GtmProduct.utils.loadDataFromAttributes($(selector));
+}
 
-window.GtmProduct.loadImpressions = function (options) {
-    var dataAttributeName = 'data-gtmproduct';
-    if (options)
-        dataAttributeName = options.dataAttributeName || dataAttributeName;
-    var impressions = window.GtmProduct.utils.findData(dataAttributeName);
 
-    var listNameElement = document.querySelector('[data-gtmproduct-list]');
-    var listName = listNameElement != null ? listNameElement.getAttribute('data-gtmproduct-list') : '';
+window.GtmProduct.loadImpressions = function () {
+    var impressions = window.GtmProduct.utils.findData();
+
+    var listNameElement = document.querySelector('['+ gtmProduct_ListDataAttributeName +']');
+    var listName = listNameElement != null ? listNameElement.getAttribute(gtmProduct_ListDataAttributeName) : '';
+
+    var currencyElement = document.querySelector('[' + gtmProduct_CurrencyDataAttributeName + ']');
+    var currencyCode = currencyElement != null ? currencyElement.getAttribute(gtmProduct_CurrencyDataAttributeName) : '';
+
     impressions = impressions.map(function (impression, i) {
         impression.position = (i + 1);
         impression.list = listName;
@@ -39,7 +47,7 @@ window.GtmProduct.loadImpressions = function (options) {
         dataLayer.push({
             'event': 'impressions',
             'ecommerce': {
-                'currencyCode': options.currencyCode,
+                'currencyCode': currencyCode,
                 'impressions': impressions
             }
         });
@@ -47,16 +55,29 @@ window.GtmProduct.loadImpressions = function (options) {
 }
 
 
-window.GtmProduct.addImpressions = function (jsonElements, productCountStart) {
+window.GtmProduct.addImpressions = function (newElements, counter) {
     var impressions = [];
-    jsonElements.each(function (i, el) {
-        impressions.push(GtmProduct.utils.parseDataAttribute(el, 'data-gtmproduct'));
-    });
+    if (newElements.length > 0) {
+        impressions = GtmProduct.utils.loadDataFromAttributes(newElements);
+        impressions = impressions.map(function (impression, i) {
+            impression.position = (i + 1 + counter);
+            return impression;
+        });
 
-    impressions = impressions.map(function (impression, i) {
-        impression.position = (i + 1 + productCountStart);
-        return impression;
-    });
+        window.GtmProduct.sendImpressions(impressions, 'NOK');
+    }
+}
+
+window.GtmProduct.sendImpressions = function (impressions, currencyCode) {
+    if (impressions.length > 0) {
+        dataLayer.push({
+            'event': 'impressions',
+            'ecommerce': {
+                'currencyCode': currencyCode,
+                'impressions': impressions
+            }
+        });
+    }
 }
 
 
