@@ -17,7 +17,7 @@ The enhanced e-commerce tracking is complex and can consist of many different el
 The implementation picks up product data by reading certain data attributes in the html. This way the module can be reused for different view model and view technologies (Rezor view, Angular, React etc..)
 
 ### Product impressions 
-The implementation will look for attributes with name *'data-gtmproduct'* (name can be configured) and expects the content of the attribute to be serlialized json product data.
+The implementation will look for attribute with name *'data-gtmproduct'* and expects the content of the attribute to be serlialized json product data.
 Refer to [Google developer documentation] (https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#ecommerce-data) for details about the different fields.
 
 Here is an example:
@@ -31,11 +31,30 @@ Here is an example:
  "position":0,
  "quantity":0}
 ```
+
+In addition, the implementation will look for two more attributes: *'data-gtmcurrency'* and *'data-gtmproduct-list'*:
+
+```html
+<!-- the selected currency -->
+<div data-gtmcurrency="NOK">
+```
+```html
+<!-- the current list category name -->
+<h1 data-gtmproduct-list="Womens">Womens</h1>
+```
+
 ## How to get started?
 
 Start by installing NuGet package (use [NuGet](http://nuget.episerver.com/)):
 
     Install-Package Geta.GTM.Ecommerce
+    
+Next step is to add the following at the bottom of your layout file (after jquery): 
+```html
+<script src="~/Scripts/Geta.GTM.Ecommerce/geta.cartEvents.js"></script>
+<script src="~/Scripts/Geta.GTM.Ecommerce/geta.productImpressions.js"></script>
+```
+
 
 ## Setting up Google Tag Manager
 Prerequsites: Google Analytics and Google Tag Manager Account.
