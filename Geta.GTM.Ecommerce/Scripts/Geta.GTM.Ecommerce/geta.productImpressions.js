@@ -1,118 +1,99 @@
-﻿window.GtmProduct = {
-    utils: {}
-};
+﻿function GtmTrackingProduct() {
+    this.gtmProduct_DataAttributeName = 'data-gtmproduct';
+    var currencyDataAttributeName = 'data-gtmcurrency';
+    var categoryListDataAttributeName = 'data-gtmproduct-list';
 
-var gtmProduct_DataAttributeName = 'data-gtmproduct';
-var gtmProduct_ListDataAttributeName = gtmProduct_DataAttributeName + '-list';
-var gtmProduct_CurrencyDataAttributeName = 'data-gtmcurrency';
+    var currencyElement = document.querySelector('[' + currencyDataAttributeName + ']');
+    this.currencyCode = currencyElement != null ? currencyElement.getAttribute(currencyDataAttributeName) : '';
 
+    var listNameElement = document.querySelector('[' + categoryListDataAttributeName + ']');
+    this.listName = listNameElement != null ? listNameElement.getAttribute(categoryListDataAttributeName) : '';
 
-window.GtmProduct.utils.parseDataAttribute = function (element) {
-    var string = element.getAttribute(gtmProduct_DataAttributeName);
-    return JSON.parse(string);
-}
-
-window.GtmProduct.utils.loadDataFromAttributes = function (elements) {
-    var impressions = [];
-    for (var i = 0, len = elements.length; i < len; i++) {
-        var p = elements[i];
-        impressions.push(GtmProduct.utils.parseDataAttribute(p));
+    this.findData = function () {
+        var selector = '*[' + this.gtmProduct_DataAttributeName + ']';
+        return this.loadDataFromAttributes($(selector));
     }
 
-    return impressions;
-}
+    this.loadDataFromAttributes = function (elements) {
+        var impressions = [];
+        for (var i = 0, len = elements.length; i < len; i++) {
+            var p = elements[i];
+            impressions.push(this.parseDataAttribute(p, this.gtmProduct_DataAttributeName));
+        }
 
-window.GtmProduct.utils.findData = function () {
-    var selector = '*[' + gtmProduct_DataAttributeName + ']';
-    return GtmProduct.utils.loadDataFromAttributes($(selector));
-}
-
-
-window.GtmProduct.loadImpressions = function () {
-    var impressions = window.GtmProduct.utils.findData();
-
-    var listNameElement = document.querySelector('['+ gtmProduct_ListDataAttributeName +']');
-    var listName = listNameElement != null ? listNameElement.getAttribute(gtmProduct_ListDataAttributeName) : '';
-
-    var currencyElement = document.querySelector('[' + gtmProduct_CurrencyDataAttributeName + ']');
-    var currencyCode = currencyElement != null ? currencyElement.getAttribute(gtmProduct_CurrencyDataAttributeName) : '';
-
-    impressions = impressions.map(function (impression, i) {
-        impression.position = (i + 1);
-        impression.list = listName;
-        return impression;
-    });
-
-    if (impressions.length > 0) {
-        dataLayer.push({
-            'event': 'impressions',
-            'ecommerce': {
-                'currencyCode': currencyCode,
-                'impressions': impressions
-            }
-        });
+        return impressions;
     }
+
+    this.parseDataAttribute = function (element, attributeName) {
+        var string = element.getAttribute(attributeName);
+        return JSON.parse(string);
+    }
+
+    this.addPositionAndPushData = function (impressions, counter) {
+        for (var i = 0, len = impressions.length; i < len; i++) {
+            var impr = impressions[i];
+            impr.position = (i + 1 + counter);
+            impr.list = this.listName;
+        }
+
+        if (impressions.length > 0) {
+            dataLayer.push({
+                'event': 'impressions',
+                'ecommerce': {
+                    'currencyCode': this.currencyCode,
+                    'impressions': impressions
+                }
+            });
+        }
+
+    }
+
 }
 
+GtmTrackingProduct.prototype.loadImpressions = function () {
 
-window.GtmProduct.addImpressions = function (newElements, counter) {
+    var impressions = this.findData();
+    this.addPositionAndPushData(impressions, 0);
+
+}
+
+GtmTrackingProduct.prototype.addImpressions = function (newElements, counter) {
+
     var impressions = [];
     if (newElements.length > 0) {
-        impressions = GtmProduct.utils.loadDataFromAttributes(newElements);
-        impressions = impressions.map(function (impression, i) {
-            impression.position = (i + 1 + counter);
-            return impression;
-        });
-
-        window.GtmProduct.sendImpressions(impressions, 'NOK');
+        impressions = this.loadDataFromAttributes(newElements);
+        this.addPositionAndPushData(impressions, counter);
     }
 }
 
-window.GtmProduct.sendImpressions = function (impressions, currencyCode) {
-    if (impressions.length > 0) {
-        dataLayer.push({
-            'event': 'impressions',
-            'ecommerce': {
-                'currencyCode': currencyCode,
-                'impressions': impressions
-            }
-        });
-    }
-}
+GtmTrackingProduct.prototype.sendCartEvent = function (products, eventName) {
 
-
-window.GtmProduct.sendCartEvent = function (options) {
-    if (options) {
-        options = {
-            products: options.products || [],
-            eventName: options.eventName || '',
-            currencyCode: options.currencyCode || ''
-        };
-
-        if (options.eventName == 'addToCart') {
+    if (products.length > 0) {
+        if (eventName == 'addToCart') {
             // add to cart
             dataLayer.push({
-                'event': options.eventName,
+                'event': eventName,
                 'ecommerce': {
-                    'currencyCode': options.currencyCode,
+                    'currencyCode': this.currencyCode,
                     'add': {
-                        'products': options.products
+                        'products': products
                     }
                 }
             });
         } else {
             // remove from cart
             dataLayer.push({
-                'event': options.eventName,
+                'event': eventName,
                 'ecommerce': {
                     'remove': {
-                        'products': options.products
+                        'products': products
                     }
                 }
             });
         }
-
-
     }
-};
+}
 
+
+var tracker = new GtmTrackingProduct();
+tracker.loadImpressions();

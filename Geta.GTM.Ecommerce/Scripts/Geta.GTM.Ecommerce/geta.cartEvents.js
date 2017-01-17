@@ -4,14 +4,13 @@
 
         var dataAttributeName = 'data-gtmproductadd';
         
-        var product = window.GtmProduct.utils.parseDataAttribute(this, dataAttributeName);
+        var tracker = new GtmTrackingProduct();
+        var product = tracker.parseDataAttribute(this, dataAttributeName);
 
         if (product != null) {
-                GtmProduct.sendCartEvent({
-                    eventName: 'addToCart',
-                    products: [product],
-                    currencyCode: 'NOK'
-                });    
+            console.log('before add to cart : ' + product);
+
+            tracker.sendCartEvent([product], "addToCart");
         }
     });
 });
