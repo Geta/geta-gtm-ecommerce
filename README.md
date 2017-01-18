@@ -32,8 +32,8 @@ Next step is to add the following at the bottom of your layout file (after jquer
 ```html
 <script src="~/Scripts/Geta.GTM.Ecommerce/geta.productImpressions.js"></script>
 <script>
-        var tracker = new GtmTrackingProduct();
-        tracker.loadImpressions();
+        var tracker = new GtmTrackingProduct(); 
+        tracker.loadImpressions(); // looks for product impressions, see section below
 </script>
 ```
 
