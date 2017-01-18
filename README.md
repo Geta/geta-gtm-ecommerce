@@ -80,6 +80,7 @@ The method has two parameters:
 ```js
  var counter = $("*[data-gtmproduct]").length;
 ```
+Click [here](/QuickSilver%20examples/examples.md#handling-autoscroll-and-product-impressions) for an example based on the Episerver QuickSilver site. 
 
 ## Setting up Google Tag Manager
 Prerequsites: Google Analytics and Google Tag Manager Account.
