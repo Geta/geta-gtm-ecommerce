@@ -16,7 +16,7 @@ Start by installing NuGet package (use [NuGet](http://nuget.episerver.com/)):
 
     Install-Package Geta.GTM.Ecommerce
     
-Step two is to add two partials to your Layout file (see details below). These partials wraps the two js-sections described in [Google's Quick Start Guide](https://developers.google.com/tag-manager/quickstart). Make sure you replace **GTM-XXXXXXX** with your Google Tag Manger code (container id).
+Step two is to add two partials to your Layout file (see details below). These partials wraps the two js-sections described in [Google's Quick Start Guide](https://developers.google.com/tag-manager/quickstart). Make sure you replace **GTM-XXXXXXX** with your Google Tag Manger code (container id) - ideally by reading the tag code from an appSetting.
 
 ```C#
 <!-- Add the following as close to the opening <head> tag as possible, replacing GTM-XXXX with your container ID -->
