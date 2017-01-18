@@ -93,7 +93,3 @@ GtmTrackingProduct.prototype.sendCartEvent = function (products, eventName) {
         }
     }
 }
-
-
-var tracker = new GtmTrackingProduct();
-tracker.loadImpressions();
