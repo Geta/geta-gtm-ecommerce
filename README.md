@@ -49,6 +49,18 @@ Start by installing NuGet package (use [NuGet](http://nuget.episerver.com/)):
 
     Install-Package Geta.GTM.Ecommerce
     
+Step two is to add two partials to your Layout file. (as described in [Google's Quick Start Guide](https://developers.google.com/tag-manager/quickstart))
+
+```C#
+<!-- Add the following as close to the opening <head> tag as possible, replacing GTM-XXXX with your container ID -->
+@Html.Partial("_GoogleTagManagerStart", "GTM-XXXXXXX")
+```
+
+```C#
+<!-- Add the following immediately after the opening <body> tag, replacing GTM-XXXX with your container ID. -->
+@Html.Partial("_GoogleTagManagerNoScript", "GTM-XXXXXXX")
+```
+    
 Next step is to add the following at the bottom of your layout file (after jquery): 
 ```html
 <script src="~/Scripts/Geta.GTM.Ecommerce/geta.cartEvents.js"></script>
