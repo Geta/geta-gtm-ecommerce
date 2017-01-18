@@ -16,7 +16,7 @@ Start by installing NuGet package (use [NuGet](http://nuget.episerver.com/)):
 
     Install-Package Geta.GTM.Ecommerce
     
-Step two is to add two partials to your Layout file (see details below). These partials wraps the two js-sections described in [Google's Quick Start Guide](https://developers.google.com/tag-manager/quickstart). Make sure you replace GTM-XXXXXXX with your Google Tag Manger code (container id).
+Step two is to add two partials to your Layout file (see details below). These partials wraps the two js-sections described in [Google's Quick Start Guide](https://developers.google.com/tag-manager/quickstart). Make sure you replace **GTM-XXXXXXX** with your Google Tag Manger code (container id).
 
 ```C#
 <!-- Add the following as close to the opening <head> tag as possible, replacing GTM-XXXX with your container ID -->
@@ -39,7 +39,7 @@ Next step is to add the following at the bottom of your layout file (after jquer
 The implementation picks up product data by reading certain data attributes in the html. This way the module can be reused for different view model and view technologies (Razor view, Angular, React etc..)
 
 ### Product impressions 
-The implementation will look for attribute with name *'data-gtmproduct'* and expects the content of the attribute to be serlialized json product data.
+The implementation will look for attribute with name **data-gtmproduct** and expects the content of the attribute to be serlialized json product data.
 Refer to [Google developer documentation] (https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#ecommerce-data) for details about the different fields.
 
 Here is an example:
@@ -54,7 +54,7 @@ Here is an example:
  "quantity":0}
 ```
 
-In addition, the implementation will look for two more attributes: *'data-gtmcurrency'* and *'data-gtmproduct-list'*:
+In addition, the implementation will look for two more attributes: **data-gtmcurrency** and **data-gtmproduct-list**:
 
 ```html
 <!-- the selected currency -->
@@ -64,7 +64,21 @@ In addition, the implementation will look for two more attributes: *'data-gtmcur
 <!-- the current list category name -->
 <h1 data-gtmproduct-list="Womens">Womens</h1>
 ```
+By default, products visible on page load are sent as impressions to google. If you add more items, typically through auto-scroll or paging functionality you can call the **addImpressions** util method. 
+```js
+ var tracker = new GtmTrackingProduct();
+ tracker.addImpressions(newElements, counter); 
+```
+The method has two parameters:
 
+**newElements** - typically a selection of elements with data-gtmproduct 
+```js
+ var newElements = $(result).find('[data-gtmproduct]');
+```
+ **counter** - nr of products already visible on the page (previously sent)
+```js
+ var counter = $("*[data-gtmproduct]").length;
+```
 
 
 ## Setting up Google Tag Manager
