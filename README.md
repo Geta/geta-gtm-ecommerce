@@ -18,7 +18,7 @@ The implementation picks up product data by reading certain data attributes in t
 
 ### Product impressions 
 The implementation will look for attribute with name *'data-gtmproduct'* and expects the content of the attribute to be serlialized json product data.
-Refer to [Google developer documentation] (https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#ecommerce-data) for details about the different fields.
+Refer to [Google developer documentation] (https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#ecommerce-data) for details about the different fields. See also [quicksilver examples](/QuickSilver%20examples/examples.md) 
 
 Here is an example:
 ```json
@@ -31,7 +31,6 @@ Here is an example:
  "position":0,
  "quantity":0}
 ```
-
 In addition, the implementation will look for two more attributes: *'data-gtmcurrency'* and *'data-gtmproduct-list'*:
 
 ```html
@@ -68,4 +67,5 @@ Here is how the 'Tags' overview should look like.
 Note: If you don't want to import, you need to setup the required tags and event your self. 
 If you do so, make sure you use the follow event names: 'impressions', 'addToCart', 'removeFromCart', 'checkout', 'productClick'
 
-## Site setup
+## More examples
+See [examples](/QuickSilver%20examples/examples.md) for more hands on examples on using the module and generating json objects.
