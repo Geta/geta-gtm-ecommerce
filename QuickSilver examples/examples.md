@@ -47,3 +47,29 @@ This would typically result in html similar to this:
     </a>
 </div>
 ```
+
+## Handling autoscroll and product impressions
+The QuickSilver demo site loads more products into a category page using auto scroll functionality. This is handled by the **infinityScroll** function inside Search.js. Below is an example of how you can track the new products fetched from the server, by adding a few lines to Search.js:
+
+```js
+ // inside the infinityScroll function, on $.ajax success
+ success: function (result) {
+                        Search.fetchingNewPage = false;
+                        if ($(result).find('.product').length > 0) {
+                            var impressionsSent = $("*[data-gtmproduct]").length;
+
+                            $('.jsSearchPage').replaceWith($(result).find('.jsSearchPage'));
+                            $('.jsSearch').append($(result).find('.jsSearch').children());
+                            $('.jsSearchFacets').replaceWith($(result).find('.jsSearchFacets'));
+
+                            var elements = $(result).find('.jsSearch').children().find('[data-gtmproduct]');
+                            if (elements.length > 0) {
+                                var tracker = new GtmTrackingProduct();
+                                tracker.addImpressions(elements, impressionsSent);
+                            }
+
+                        } else {
+                            Search.lastPage = true;
+                        }
+                    }
+```
