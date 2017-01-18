@@ -2,12 +2,11 @@
 
 Module for enhanced Ecommerce tracking through Google Tag Manager. 
 The enhanced e-commerce tracking is complex and can consist of many different elements. We have therefore created a standard version building on these features: 
--	Add to cart
--	Check out
 -	Impressions
+-	Add to cart
+-   Remove from cart
+-	Check out
 -	Product click
--	Products remove from cart
--	All page views
 
 ![](http://tc.geta.no/app/rest/builds/buildType:(id:TeamFrederik_EPiTracking_EPiTrackingCommerceCreateAndPublishNuGetPackage)/statusIcon)
 
@@ -37,7 +36,7 @@ Next step is to add the following at the bottom of your layout file (after jquer
 
 
 ## How does it work
-The implementation picks up product data by reading certain data attributes in the html. This way the module can be reused for different view model and view technologies (Rezor view, Angular, React etc..)
+The implementation picks up product data by reading certain data attributes in the html. This way the module can be reused for different view model and view technologies (Razor view, Angular, React etc..)
 
 ### Product impressions 
 The implementation will look for attribute with name *'data-gtmproduct'* and expects the content of the attribute to be serlialized json product data.
@@ -80,4 +79,4 @@ Here is how the 'Tags' overview should look like.
 Note: If you don't want to import, you need to setup the required tags and event your self. 
 If you do so, make sure you use the follow event names: 'impressions', 'addToCart', 'removeFromCart', 'checkout', 'productClick'
 
-## Site setup
+
