@@ -10,6 +10,22 @@ The enhanced e-commerce tracking is complex and can consist of many different el
 
 ![](http://tc.geta.no/app/rest/builds/buildType:(id:TeamFrederik_EPiTracking_EPiTrackingCommerceCreateAndPublishNuGetPackage)/statusIcon)
 
+## Installation - How to get started?
+
+Start by installing NuGet package (use [NuGet](http://nuget.episerver.com/)):
+
+    Install-Package Geta.GTM.Ecommerce
+    
+Next step is to add the following at the bottom of your layout file (after jquery): 
+```html
+<script src="~/Scripts/Geta.GTM.Ecommerce/geta.productImpressions.js"></script>
+<script>
+        var tracker = new GtmTrackingProduct();
+        tracker.loadImpressions();
+</script>
+```
+
+
 ## How does it work
 The implementation picks up product data by reading certain data attributes in the html. This way the module can be reused for different view models and view technologies (Razor view, Angular, React etc..)
 
@@ -37,21 +53,6 @@ In addition, the implementation will look for two more attributes: *'data-gtmcur
 ```html
 <!-- the current list category name -->
 <h1 data-gtmproduct-list="Womens">Womens</h1>
-```
-
-## How to get started?
-
-Start by installing NuGet package (use [NuGet](http://nuget.episerver.com/)):
-
-    Install-Package Geta.GTM.Ecommerce
-    
-Next step is to add the following at the bottom of your layout file (after jquery): 
-```html
-<script src="~/Scripts/Geta.GTM.Ecommerce/geta.productImpressions.js"></script>
-<script>
-        var tracker = new GtmTrackingProduct();
-        tracker.loadImpressions();
-</script>
 ```
 
 
