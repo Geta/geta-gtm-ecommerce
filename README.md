@@ -30,10 +30,12 @@ Step two is to add two partials to your Layout file (see details below). These p
     
 Next step is to add the following at the bottom of your layout file (after jquery): 
 ```html
-<script src="~/Scripts/Geta.GTM.Ecommerce/geta.cartEvents.js"></script>
 <script src="~/Scripts/Geta.GTM.Ecommerce/geta.productImpressions.js"></script>
+<script>
+        var tracker = new GtmTrackingProduct();
+        tracker.loadImpressions();
+</script>
 ```
-
 
 ## How does it work
 The implementation picks up product data by reading certain data attributes in the html. This way the module can be reused for different view model and view technologies (Razor view, Angular, React etc..)
