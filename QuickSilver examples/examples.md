@@ -11,29 +11,32 @@ Example from _Product.cshtml:
 ```cshtml
 @model EPiServer.Reference.Commerce.Site.Features.Shared.Models.IProductModel
 
-@{    
 
-    if (Model == null)
-    {
-        return;
-    }
-    var settings = new JsonSerializerSettings();
-    settings.ContractResolver = new LowercaseContractResolver();
-    var product = new TrackingProduct()
-    {
-        Id = Model.Code,
-        Name = Model.DisplayName,
-        Price = Model.DiscountedPrice.GetValueOrDefault().Amount,
-        Brand = Model.Brand,
-        Category = Model.Category
-    };
-}
-
-<div class="@productLevelClass"  data-gtmproduct="@JsonConvert.SerializeObject(product,settings)">
+<div class="@productLevelClass"  data-gtmproduct="@Helpers.RenderProductJson(Model)">
 	<a href="@Model.Url" class="link--black">
 		<!-- .... -->
 	</a>
 </div>
+```
+From Helpers.cshtml:
+```cshtml
+@helper RenderProductJson(IProductModel productModel)
+{
+    if(productModel == null)
+    {
+        return;
+    }
+    var settings = new JsonSerializerSettings {ContractResolver = new LowercaseContractResolver()};
+    var product = new TrackingProduct()
+    {
+        Id = productModel.Code,
+        Name = productModel.DisplayName,
+        Price = productModel.DiscountedPrice.GetValueOrDefault().Amount,
+        Brand = productModel.Brand,
+        Category = productModel.Category
+    };
+    @JsonConvert.SerializeObject(product, settings)
+}
 ```
 
 This would typically result in html similar to this:
