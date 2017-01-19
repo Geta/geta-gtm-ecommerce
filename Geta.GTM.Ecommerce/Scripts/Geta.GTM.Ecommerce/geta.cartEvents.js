@@ -2,7 +2,7 @@
 
     $('.jsAddToCart').click(function () {
 
-        var dataAttributeName = 'data-gtmproductadd';
+        var dataAttributeName = 'data-gtmcartitem';
         
         var tracker = new GtmTrackingProduct();
         var product = tracker.parseDataAttribute(this, dataAttributeName);

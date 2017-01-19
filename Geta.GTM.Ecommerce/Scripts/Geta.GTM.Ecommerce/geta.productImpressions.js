@@ -50,11 +50,40 @@
 
 }
 
-GtmTrackingProduct.prototype.loadImpressions = function () {
+GtmTrackingProduct.prototype.trackImpressions = function () {
 
     var impressions = this.findData();
     this.addPositionAndPushData(impressions, 0);
+}
 
+
+GtmTrackingProduct.prototype.trackProductClicks = function () {
+
+    var selector = '*[' + this.gtmProduct_DataAttributeName + ']';
+    var self = this;
+
+    $('body').on('click', selector, function () {
+        var product = self.parseDataAttribute(this, self.gtmProduct_DataAttributeName);
+        if (product != null) {
+            dataLayer.push({
+                'event': 'productClick',
+                'ecommerce': {
+                    'click': {
+                        'actionField': { 'list': this.listName },      // Optional list property.
+                        'products': [{
+                            'name': product.name,                      // Name or ID is required.
+                            'id': product.id,
+                            'price': product.price,
+                            'brand': product.brand,
+                            'category': product.cat,
+                            'variant': product.variant,
+                            'position': product.position
+                        }]
+                    }
+                }
+            });
+        }
+    });
 }
 
 GtmTrackingProduct.prototype.addImpressions = function (newElements, counter) {
