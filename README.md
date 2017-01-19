@@ -32,9 +32,10 @@ Next step is to add the following at the bottom of your layout file (after jquer
 ```html
 <!-- Add required script --> 
 <script src="~/Scripts/Geta.GTM.Ecommerce/geta.productImpressions.js"></script>
-
+```
 ## Using the module
 To track product impressions and product clicks: 
+```html
 <script>
     <!-- Using the module - track product impressions and product clicks --> 
         var tracker = new GtmTrackingProduct();         
