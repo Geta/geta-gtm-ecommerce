@@ -12,19 +12,19 @@ Example from _Product.cshtml:
 @model EPiServer.Reference.Commerce.Site.Features.Shared.Models.IProductModel
 
 
-<div class="@productLevelClass"  data-gtmproduct="@Html.RenderProductJson(Model)">
+<div class="@productLevelClass"  data-gtmproduct="@Helper.RenderProductJson(Model)">
 	<a href="@Model.Url" class="link--black">
 		<!-- .... -->
 	</a>
 </div>
 ```
-The html helper method:
+The static helper method:
 ```c#
-public static IHtmlString RenderProductJson(this HtmlHelper htmlHelper, IProductModel productModel, decimal? quantity = null)
+public static string RenderProductJson(IProductModel productModel, decimal? quantity = null)
         {
             if (productModel == null)
             {
-                return htmlHelper.Raw(string.Empty);
+                return string.Empty;
             }
             var product = new TrackingProduct()
             {
@@ -36,12 +36,11 @@ public static IHtmlString RenderProductJson(this HtmlHelper htmlHelper, IProduct
             };
 
             if (quantity != null)
-                product.Quantity = quantity.Value;
+                product.Quantity = (int)quantity.Value;
 
             var settings = new JsonSerializerSettings { ContractResolver = new LowercaseContractResolver() };
-            return htmlHelper.Raw(JsonConvert.SerializeObject(product, settings));
-        }
-```
+            return JsonConvert.SerializeObject(product, settings);
+        }```
 
 This would typically result in html similar to this:
 
