@@ -30,10 +30,16 @@ Step two is to add two partials to your Layout file (see details below). These p
     
 Next step is to add the following at the bottom of your layout file (after jquery): 
 ```html
+<!-- Add required script --> 
 <script src="~/Scripts/Geta.GTM.Ecommerce/geta.productImpressions.js"></script>
+
+## Using the module
+To track product impressions and product clicks: 
 <script>
-        var tracker = new GtmTrackingProduct(); 
-        tracker.loadImpressions(); // looks for product impressions, see section below
+    <!-- Using the module - track product impressions and product clicks --> 
+        var tracker = new GtmTrackingProduct();         
+        tracker.trackImpressions();
+        tracker.trackProductClicks();
 </script>
 ```
 
