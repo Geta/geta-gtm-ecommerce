@@ -12,31 +12,35 @@ Example from _Product.cshtml:
 @model EPiServer.Reference.Commerce.Site.Features.Shared.Models.IProductModel
 
 
-<div class="@productLevelClass"  data-gtmproduct="@Helpers.RenderProductJson(Model)">
+<div class="@productLevelClass"  data-gtmproduct="@Html.RenderProductJson(Model)">
 	<a href="@Model.Url" class="link--black">
 		<!-- .... -->
 	</a>
 </div>
 ```
-From Helpers.cshtml:
-```cshtml
-@helper RenderProductJson(IProductModel productModel)
-{
-    if(productModel == null)
-    {
-        return;
-    }
-    var settings = new JsonSerializerSettings {ContractResolver = new LowercaseContractResolver()};
-    var product = new TrackingProduct()
-    {
-        Id = productModel.Code,
-        Name = productModel.DisplayName,
-        Price = productModel.DiscountedPrice.GetValueOrDefault().Amount,
-        Brand = productModel.Brand,
-        Category = productModel.Category
-    };
-    @JsonConvert.SerializeObject(product, settings)
-}
+The html helper method:
+```c#
+public static IHtmlString RenderProductJson(this HtmlHelper htmlHelper, IProductModel productModel, decimal? quantity = null)
+        {
+            if (productModel == null)
+            {
+                return htmlHelper.Raw(string.Empty);
+            }
+            var product = new TrackingProduct()
+            {
+                Id = productModel.Code,
+                Name = productModel.DisplayName,
+                Price = productModel.DiscountedPrice.GetValueOrDefault().Amount,
+                Brand = productModel.Brand,
+                Category = productModel.Category
+            };
+
+            if (quantity != null)
+                product.Quantity = quantity.Value;
+
+            var settings = new JsonSerializerSettings { ContractResolver = new LowercaseContractResolver() };
+            return htmlHelper.Raw(JsonConvert.SerializeObject(product, settings));
+        }
 ```
 
 This would typically result in html similar to this:
