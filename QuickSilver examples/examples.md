@@ -40,8 +40,8 @@ public static string RenderProductJson(IProductModel productModel, decimal? quan
 
             var settings = new JsonSerializerSettings { ContractResolver = new LowercaseContractResolver() };
             return JsonConvert.SerializeObject(product, settings);
-        }```
-
+        }
+```
 This would typically result in html similar to this:
 
 ```html
