@@ -3,6 +3,7 @@
 Module for enhanced Ecommerce tracking through Google Tag Manager. 
 The enhanced e-commerce tracking is complex and can consist of many different elements. We have therefore created a standard version building on these features: 
 -	Impressions
+-   Product clicks
 -	Add to cart
 -   Remove from cart
 -	Checkout
