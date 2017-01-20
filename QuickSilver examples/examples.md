@@ -70,12 +70,13 @@ updatePage: function (url, data, onSuccess) {
                 $('.jsSearch').replaceWith($(result).find('.jsSearch'));
                 $('.jsSearchFacets').replaceWith($(result).find('.jsSearchFacets'));
 
-                // push impressions to google
+                // START: gtm - push impressions to google
                 var elements = $(result).find('.jsSearch').children().find('[data-gtmproduct]');
                 if (elements.length > 0) {
                     var tracker = new GtmTrackingProduct();
                     tracker.addImpressions(elements, 0);
                 }
+		// END gtm
 
                 if (onSuccess) {
                     onSuccess(result);
