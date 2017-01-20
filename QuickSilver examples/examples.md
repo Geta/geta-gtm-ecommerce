@@ -54,7 +54,37 @@ This would typically result in html similar to this:
 </div>
 ```
 
-## Handling autoscroll and product impressions
-The QuickSilver demo site loads more products into a category page using auto scroll functionality. This is handled by the **infinityScroll** function inside Search.js. Below is an example of how you can track the new products fetched from the server, by adding a few lines (the yellow ones) to Search.js:
+## Handling autoscroll, sorting and filtering
+The product category list page in the QuickSilver demo site has both sorting, filtering and auto scroll functionality. To track product impressions you can call the addImpressions util method. 
+
+Pushing impressions after sorting or filtering:
+
+```js
+updatePage: function (url, data, onSuccess) {
+        $.ajax({
+            type: "POST",
+            url: url || "",
+            data: data,
+            success: function (result) {
+                $('.jsSearchPage').replaceWith($(result).find('.jsSearchPage'));
+                $('.jsSearch').replaceWith($(result).find('.jsSearch'));
+                $('.jsSearchFacets').replaceWith($(result).find('.jsSearchFacets'));
+
+                // push impressions to google
+                var elements = $(result).find('.jsSearch').children().find('[data-gtmproduct]');
+                if (elements.length > 0) {
+                    var tracker = new GtmTrackingProduct();
+                    tracker.addImpressions(elements, 0);
+                }
+
+                if (onSuccess) {
+                    onSuccess(result);
+                }
+            }
+        });
+    }
+```
+
+Autoscroll in QS demo site is handled by the **infinityScroll** function inside Search.js. Below is an example of how you can track the new products fetched from the server, by adding a few lines (the yellow ones) to Search.js:
 
 ![search.js](autoscroll.PNG)
