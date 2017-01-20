@@ -12,7 +12,6 @@ The enhanced e-commerce tracking is complex and can consist of many different el
 ![](http://tc.geta.no/app/rest/builds/buildType:(id:TeamFrederik_EPiTracking_EPiTrackingCommerceCreateAndPublishNuGetPackage)/statusIcon)
 
 ## Installation - How to get started?
-
 Start by installing NuGet package (use [NuGet](http://nuget.episerver.com/)):
 
     Install-Package Geta.GTM.Ecommerce
@@ -34,6 +33,10 @@ Next step is to add the following at the bottom of your layout file (after jquer
 <!-- Add required script --> 
 <script src="~/Scripts/Geta.GTM.Ecommerce/geta.productImpressions.js"></script>
 ```
+
+### Pro tip: Google Analytics debugger - a time saver
+Install the [Google Analytics Debugger chrome extension](https://chrome.google.com/webstore/detail/google-analytics-debugger/jnkmfdileelhofjcijamephohjechhna). It prints useful information to the Javascript console.  These messages include error messages and warnings which can tell you when your analytics tracking code is set up incorrectly.
+
 ## How does it work
 The implementation picks up product data by reading certain data attributes in the html. This way the module can be reused for different view model and view technologies (Razor view, Angular, React etc..)
 
