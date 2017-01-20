@@ -118,6 +118,31 @@ A simple example that assumes that your addToCart item has a class 'jsAddToCart'
 
 See [QuickSilver](/QuickSilver%20examples/examples.md#handling-autoscroll-and-product-impressions) for a complete example.
 
+## Transactions (purchase)
+Transactions are typically tracked on your order confirmation page (at the bottom of the page).
+
+```js
+<script src="~/Scripts/Geta.GTM.Ecommerce/geta.transaction.js"></script>
+    <script>
+
+        var products = @Html.Raw(transactionProducts);
+
+        var transaction = {
+            "id": "@Model.OrderId",
+            "affiliation": "Quick Silver demo site",
+            "total": "@Model.CartTotal.Amount.ToString("0.00", CultureInfo.InvariantCulture)",
+            "shipping": "@Model.ShippingTotal.Amount.ToString("0.00", CultureInfo.InvariantCulture)",
+            "tax": "@Model.TaxTotal.Amount.ToString("0.00", CultureInfo.InvariantCulture)",
+            "coupon" : ""
+        };
+
+        var gtmTransaction = new GtmTransaction();
+        gtmTransaction.track(transaction, products);
+
+    </script>
+```
+
+
 
 ## Setting up Google Tag Manager
 Prerequsites: Google Analytics and Google Tag Manager Account.
