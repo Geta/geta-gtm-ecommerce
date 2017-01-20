@@ -43,7 +43,7 @@ Add the following script to track product impressions and product clicks:
     <!-- Using the module - track product impressions and product clicks --> 
         var tracker = new GtmTrackingProduct();         
         tracker.trackImpressions();
-        tracker.trackProductClicks();
+        tracker.trackProductClicks('.jsSearch'); // css container for product lists
 </script>
 ```
 ### Product impressions and clicks
