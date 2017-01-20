@@ -120,7 +120,7 @@ See [QuickSilver](/QuickSilver%20examples/examples.md#handling-autoscroll-and-pr
 
 ## Transactions (purchase)
 Transactions are typically tracked on your order confirmation page (at the bottom of the page).
-
+**Note:** The track() method uses a cookie in order to prevent duplicate transaction data.
 ```js
 <script src="~/Scripts/Geta.GTM.Ecommerce/geta.transaction.js"></script>
     <script>
