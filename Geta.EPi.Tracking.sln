@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geta.EPi.Tracking.Commerce", "Geta.EPi.Tracking.Commerce\Geta.EPi.Tracking.Commerce.csproj", "{9D10D147-4C0C-459B-AD67-09A21E2C1A04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geta.GTM.Ecommerce", "Geta.GTM.Ecommerce\Geta.GTM.Ecommerce.csproj", "{690CD91B-526F-45A9-9047-2BA12BE9983A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9D10D147-4C0C-459B-AD67-09A21E2C1A04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D10D147-4C0C-459B-AD67-09A21E2C1A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D10D147-4C0C-459B-AD67-09A21E2C1A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D10D147-4C0C-459B-AD67-09A21E2C1A04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{690CD91B-526F-45A9-9047-2BA12BE9983A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{690CD91B-526F-45A9-9047-2BA12BE9983A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{690CD91B-526F-45A9-9047-2BA12BE9983A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{690CD91B-526F-45A9-9047-2BA12BE9983A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
