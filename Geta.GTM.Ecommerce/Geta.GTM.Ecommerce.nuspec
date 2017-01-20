@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Geta.GTM.Ecommerce</id>
+    <version>$version$</version>
+    <authors>Geta</authors>
+    <owners>Geta</owners>
+    <projectUrl>https://github.com/Geta/EPi.Tracking/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Module for enhanced Ecommerce tracking through Google Tag Manager.</description>
+    <tags>Geta EPiServer Google TagManager</tags>
+	<dependencies>
+      <dependency id="Newtonsoft.Json" version="6.0.8" />
+    </dependencies>
+  </metadata>
+</package>
