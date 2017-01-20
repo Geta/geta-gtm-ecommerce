@@ -34,8 +34,10 @@ Next step is to add the following at the bottom of your layout file (after jquer
 <!-- Add required script --> 
 <script src="~/Scripts/Geta.GTM.Ecommerce/geta.productImpressions.js"></script>
 ```
-## Using the module
-To track product impressions and product clicks: 
+## How does it work
+The implementation picks up product data by reading certain data attributes in the html. This way the module can be reused for different view model and view technologies (Razor view, Angular, React etc..)
+
+Add the following script to track product impressions and product clicks: 
 ```html
 <script>
     <!-- Using the module - track product impressions and product clicks --> 
@@ -44,11 +46,7 @@ To track product impressions and product clicks:
         tracker.trackProductClicks();
 </script>
 ```
-
-## How does it work
-The implementation picks up product data by reading certain data attributes in the html. This way the module can be reused for different view model and view technologies (Razor view, Angular, React etc..)
-
-### Product impressions 
+### Product impressions and clicks
 The implementation will look for attribute with name **data-gtmproduct** and expects the content of the attribute to be serlialized json product data. See [quicksilver example code](QuickSilver%20examples/examples.md) and refer to [Google developer documentation] (https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#ecommerce-data) for details about the different fields. 
 
 Example json:
@@ -78,8 +76,6 @@ By default, products visible on page load are sent as impressions to google. If 
  var tracker = new GtmTrackingProduct();
  tracker.addImpressions(newElements, counter); 
 ```
-The method has two parameters:
-
 **newElements** - typically a selection of elements with data-gtmproduct 
 ```js
  var newElements = $(result).find('[data-gtmproduct]');
@@ -89,6 +85,17 @@ The method has two parameters:
  var counter = $("*[data-gtmproduct]").length;
 ```
 Click [here](/QuickSilver%20examples/examples.md#handling-autoscroll-and-product-impressions) for an example based on the Episerver QuickSilver site. 
+
+## Add/Remove from cart
+When adding removing from cart you need to call **sendCartEvent** method:
+```js
+ sendCartEvent = function (products, eventName)
+```
+**products** - parsed product json - remember to set quantity
+**eventName** -  'addToCart' or 'removeFromCart'
+
+See [QuickSilver](/QuickSilver%20examples/examples.md#handling-autoscroll-and-product-impressions) for a complete example.
+
 
 ## Setting up Google Tag Manager
 Prerequsites: Google Analytics and Google Tag Manager Account.
