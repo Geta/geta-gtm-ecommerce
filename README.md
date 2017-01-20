@@ -96,22 +96,21 @@ When adding removing from cart you need to call **sendCartEvent** method:
 **eventName** -  'addToCart' or 'removeFromCart'
 
 To avoid impression tracking of cart items I suggest using a different data attribute name for the cart items: "data-gtmcartitem". 
-Assuming that you have an addToCart event, you can track addToCart this way:
+A simple example that assumes that your addToCart item has a class 'jsAddToCart':
 
 ```js
-        // inside your addToCart js event handler
-        // selectedContainer is the jQuery selection that identifies the current cart item container
-        var gtmElement = $("[data-gtmcartitem]", selectedContainer).get(0); // locate correct product json        
-        if (gtmElement) {
-            var tracker = new GtmTrackingProduct();
-            // use helper method to parse data
-            var product = tracker.parseDataAttribute(gtmElement, "data-gtmcartitem");
-            if (product != null) {
-                product.quantity = 1; // could be set from input if possible to add more items at once 
-                // call the method that does the tracking
-                tracker.sendCartEvent([product], "addToCart");
-            }
+    $('.jsAddToCart').click(function () {
+        var dataAttributeName = 'data-gtmcartitem';
+        
+        var tracker = new GtmTrackingProduct();
+        // use helper method to parse data
+        var product = tracker.parseDataAttribute(this, dataAttributeName);
+
+        if (product != null) {
+            product.quantity = 1; // could be set from input if possible to add more items at once 
+            tracker.sendCartEvent([product], "addToCart");
         }
+    });
 ```
 
 See [QuickSilver](/QuickSilver%20examples/examples.md#handling-autoscroll-and-product-impressions) for a complete example.
