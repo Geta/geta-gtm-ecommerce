@@ -1,4 +1,5 @@
-﻿function GtmTrackingProduct() {
+﻿// GTM tracking of product impressions and product clicks
+function GtmTrackingProduct() {
     this.gtmProduct_DataAttributeName = 'data-gtmproduct';
     var currencyDataAttributeName = 'data-gtmcurrency';
     var categoryListDataAttributeName = 'data-gtmproduct-list';
@@ -57,19 +58,19 @@ GtmTrackingProduct.prototype.trackImpressions = function () {
 }
 
 
-GtmTrackingProduct.prototype.trackProductClicks = function () {
+GtmTrackingProduct.prototype.trackProductClicks = function (classSelector) {
 
     var selector = '*[' + this.gtmProduct_DataAttributeName + ']';
     var self = this;
 
-    $('body').on('click', selector, function () {
+    $(classSelector).on('click', selector, function () {
         var product = self.parseDataAttribute(this, self.gtmProduct_DataAttributeName);
         if (product != null) {
             dataLayer.push({
                 'event': 'productClick',
                 'ecommerce': {
                     'click': {
-                        'actionField': { 'list': this.listName },      // Optional list property.
+                        'actionField': { 'list': self.listName },      // Optional list property.
                         'products': [{
                             'name': product.name,                      // Name or ID is required.
                             'id': product.id,

@@ -48,9 +48,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Sample\AttributeExample.html" />
+    <Content Include="Scripts\Geta.GTM.Ecommerce\geta.transaction.js" />
     <Content Include="Scripts\Geta.GTM.Ecommerce\geta.productImpressions.js" />
-    <Content Include="Scripts\Geta.GTM.Ecommerce\geta.cartEvents.js" />
+    <Content Include="Scripts\Geta.GTM.Ecommerce\geta.checkout.js" />
     <Content Include="Views\Shared\_GoogleTagManagerNoScript.cshtml" />
   </ItemGroup>
   <ItemGroup>
