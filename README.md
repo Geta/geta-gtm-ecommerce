@@ -71,7 +71,8 @@ In addition, the implementation will look for two more attributes: **data-gtmcur
 <!-- the current list category name -->
 <h1 data-gtmproduct-list="Womens">Womens</h1>
 ```
-By default, products visible on page load are sent as impressions to google. If you add more items, typically through auto-scroll or paging functionality you can call the **addImpressions** util method. 
+#### Sorting, filtering and paging/autoscroll
+By default, products visible on page load are sent as impressions to google. If you change the view based on filter or sorting, or add more items, typically through auto-scroll or paging functionality you can call the **addImpressions** util method. 
 ```js
  var tracker = new GtmTrackingProduct();
  tracker.addImpressions(newElements, counter); 
@@ -80,11 +81,11 @@ By default, products visible on page load are sent as impressions to google. If 
 ```js
  var newElements = $(result).find('[data-gtmproduct]');
 ```
- **counter** - nr of products already visible on the page (previously sent)
+ **counter** - nr of products already visible on the page (0 when sorting/filtering, >0 when paging/autoscroll)
 ```js
  var counter = $("*[data-gtmproduct]").length;
 ```
-Click [here](/QuickSilver%20examples/examples.md#handling-autoscroll-and-product-impressions) for an example based on the Episerver QuickSilver site. 
+Click [here](/QuickSilver%20examples/examples.md#handling-autoscroll-sorting-and-filtering) for an example based on the Episerver QuickSilver site. 
 
 ## Add/Remove from cart
 When adding removing from cart you need to call **sendCartEvent** method:
