@@ -31,6 +31,7 @@ GtmTransaction.prototype.track = function (transactionData, products) {
 
     if (!this.checkIsSent(transactionData.id)) {
         dataLayer.push({
+            'event': 'purchase',
             'ecommerce': {
                 'purchase': {
                     'actionField': {
