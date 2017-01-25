@@ -2,6 +2,10 @@
 
 function GtmTransaction() {
 
+    var currencyDataAttributeName = 'data-gtmcurrency';
+    var currencyElement = document.querySelector('[' + currencyDataAttributeName + ']');
+    this.currencyCode = currencyElement != null ? currencyElement.getAttribute(currencyDataAttributeName) : '';
+
     this.checkIsSent = function (ref) {
         // Prevents double transactions
         // START COOKIE CHECK
@@ -33,6 +37,7 @@ GtmTransaction.prototype.track = function (transactionData, products) {
         dataLayer.push({
             'event': 'purchase',
             'ecommerce': {
+                'currencyCode': this.currencyCode,
                 'purchase': {
                     'actionField': {
                         'id': transactionData.id, // Transaction ID. Required for purchases and refunds.
