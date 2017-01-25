@@ -35,7 +35,7 @@ Next step is to add the following at the bottom of your layout file (after jquer
 ```
 
 ### Pro tip: Google Analytics debugger - a time saver
-Install the [Google Analytics Debugger chrome extension](https://chrome.google.com/webstore/detail/google-analytics-debugger/jnkmfdileelhofjcijamephohjechhna). It prints useful information to the Javascript console.  These messages include error messages and warnings which can tell you when your analytics tracking code is set up incorrectly.
+Ecommerce is not part of real time tracking in Google Analytics. To save valueable time debugging you should install the [Google Analytics Debugger chrome extension](https://chrome.google.com/webstore/detail/google-analytics-debugger/jnkmfdileelhofjcijamephohjechhna). It prints useful information to the Javascript console.  These messages include error messages and warnings which can tell you when your analytics tracking code is set up incorrectly.
 
 ## How does it work
 The implementation picks up product data by reading certain data attributes in the html. This way the module can be reused for different view model and view technologies (Razor view, Angular, React etc..)
