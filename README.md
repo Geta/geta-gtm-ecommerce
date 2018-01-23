@@ -14,6 +14,11 @@ The enhanced e-commerce tracking is complex and can consist of many different el
 
 ![](http://tc.geta.no/app/rest/builds/buildType:(id:TeamFrederik_EPiTracking_EPiTrackingCommerceCreateAndPublishNuGetPackage)/statusIcon)
 
+## Package maintainer
+https://github.com/marijorg
+and
+https://github.com/milosmalic
+
 ## Installation - How to get started?
 Start by installing NuGet package (use [NuGet](http://nuget.episerver.com/)):
 
