@@ -1,13 +1,16 @@
 # Geta.GTM.Ecommerce
 
+## Description
 Module for enhanced Ecommerce tracking through Google Tag Manager. 
+
+## Features
 The enhanced e-commerce tracking is complex and can consist of many different elements. We have therefore created a standard version building on these features: 
--	Impressions
--   Product clicks
--	Add to cart
--   Remove from cart
--	Checkout
--	Transactions
+*	Impressions
+*   Product clicks
+*	Add to cart
+*   Remove from cart
+*	Checkout
+*	Transactions
 
 ![](http://tc.geta.no/app/rest/builds/buildType:(id:TeamFrederik_EPiTracking_EPiTrackingCommerceCreateAndPublishNuGetPackage)/statusIcon)
 
