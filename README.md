@@ -1,5 +1,8 @@
 # Geta.GTM.Ecommerce
 
+* Master<br>
+![](http://tc.geta.no/app/rest/builds/buildType:(id:GetaPackages_EPiTracking_00ci),branch:master/statusIcon)
+
 ## Description
 Module for enhanced Ecommerce tracking through Google Tag Manager. 
 
