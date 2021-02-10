@@ -9,10 +9,13 @@
         <Copyright>Geta Copyright © 2021</Copyright>
         <Company>Geta</Company>
         <Product>Geta.GTM.Ecommerce</Product>
+        <PackageVersion>1.0.0</PackageVersion>
+        <LangVersion>default</LangVersion>
+        <Description>Module for enhanced Ecommerce tracking through Google Tag Manager</Description>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+      <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     </ItemGroup>
 
     <ItemGroup>
