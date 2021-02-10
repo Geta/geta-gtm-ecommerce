@@ -169,3 +169,7 @@ If you do so, make sure you use the follow event names: 'impressions', 'addToCar
 
 ## More examples
 See [examples](QuickSilver%20examples/examples.md) for more hands on examples on using the module and generating json objects.
+
+## Changelog
+
+[Changelog](CHANGELOG.md)
