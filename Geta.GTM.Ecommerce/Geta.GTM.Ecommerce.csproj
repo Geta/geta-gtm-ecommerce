@@ -12,6 +12,7 @@
         <PackageVersion>1.0.0</PackageVersion>
         <LangVersion>default</LangVersion>
         <Description>Module for enhanced Ecommerce tracking through Google Tag Manager</Description>
+        <RepositoryUrl>URL</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>
