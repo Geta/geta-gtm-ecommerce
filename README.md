@@ -1,6 +1,5 @@
 # Geta.GTM.Ecommerce
 
-* Master<br>
 ![](http://tc.geta.no/app/rest/builds/buildType:(id:GetaPackages_EPiTracking_00ci),branch:master/statusIcon)
 
 ## Description
@@ -14,8 +13,6 @@ The enhanced e-commerce tracking is complex and can consist of many different el
 *   Remove from cart
 *	Checkout
 *	Transactions
-
-![](http://tc.geta.no/app/rest/builds/buildType:(id:TeamFrederik_EPiTracking_EPiTrackingCommerceCreateAndPublishNuGetPackage)/statusIcon)
 
 ## Package maintainer
 https://github.com/marijorg
